@@ -1,21 +1,21 @@
-const userService = require('../services/userService');
+const ticketServices = require('../services/ticketServices');
 
-const getAllUser = async (req, res) => {
-    userService.getAllUser()
-    .then((users) => {
-        if(!users){
+const getAllTicket = async (req, res) => {
+    ticketServices.getAllTicket()
+    .then((tickets) => {
+        if(!tickets){
             // set content type
             res.status(404).send({
                 status : 'error',
-                message : 'Data user tidak ditemukan',
+                message : 'Data ticket tidak ditemukan',
                 data : {}
         });
         }
         else {
             res.status(200).send({
                 status : 'success',
-                message : 'Data user berhasil ditemukan',
-                data : users    
+                message : 'Data ticket berhasil ditemukan',
+                data : tickets    
             });
         }
     })
@@ -28,14 +28,13 @@ const getAllUser = async (req, res) => {
     })
 }
 
-const createUser= async(req, res) => {
+const createTicket= async(req, res) => {
     try {
-        const {user_name, email, password} = req.body;
-        console.log (user_name, email, password);
-        await userService.createUser(user_name, email, password);
+        const {seat_number, booking_id} = req.body;
+        await ticketServices.createTicket(seat_number, booking_id);
         res.status(201).send({
             status : 'success',
-            message : 'Data user berhasil ditambahkan',
+            message : 'Data ticket berhasil ditambahkan',
             data : ''
         });
     }
@@ -48,10 +47,10 @@ const createUser= async(req, res) => {
     }
 }
 
-const deleteUser = async (req, res) => {
+const deleteTicket = async (req, res) => {
     try {
         const {id} = req.params;
-        await userService.deleteUser(id);
+        await ticketServices.deleteTicket(id);
         res.status(200).send({
             status : 'success',
         });
@@ -65,14 +64,14 @@ const deleteUser = async (req, res) => {
     }
 }
 
-const updateUser = async (req, res) => {
+const updateTicket = async (req, res) => {
     try {
         const {id} = req.params;
-        const {user_name, email, password} = req.body;
-        await userService.updateUser(id, user_name, email, password);
+        const {seat_number, booking_id} = req.body;
+        await ticketServices.updateTicket(id, seat_number, booking_id);
         res.status(200).send({
             status : 'success',
-            message : 'Data user berhasil diupdate',
+            message : 'Data ticket berhasil diupdate',
             data : ''
         });
     }
@@ -86,8 +85,8 @@ const updateUser = async (req, res) => {
 }
 
 module.exports = { 
-    getAllUser,
-    createUser,
-    deleteUser,
-    updateUser
+    getAllTicket,
+    createTicket,
+    deleteTicket,
+    updateTicket
 }

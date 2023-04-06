@@ -1,21 +1,21 @@
-const userService = require('../services/userService');
+const bookingServices = require('../services/bookingServices');
 
-const getAllUser = async (req, res) => {
-    userService.getAllUser()
-    .then((users) => {
-        if(!users){
+const getAllBooking = async (req, res) => {
+    bookingServices.getAllBooking()
+    .then((bookings) => {
+        if(!bookings){
             // set content type
             res.status(404).send({
                 status : 'error',
-                message : 'Data user tidak ditemukan',
+                message : 'Data booking tidak ditemukan',
                 data : {}
         });
         }
         else {
             res.status(200).send({
                 status : 'success',
-                message : 'Data user berhasil ditemukan',
-                data : users    
+                message : 'Data booking berhasil ditemukan',
+                data : bookings    
             });
         }
     })
@@ -28,14 +28,13 @@ const getAllUser = async (req, res) => {
     })
 }
 
-const createUser= async(req, res) => {
+const createBooking= async(req, res) => {
     try {
-        const {user_name, email, password} = req.body;
-        console.log (user_name, email, password);
-        await userService.createUser(user_name, email, password);
+        const {name, gender, email, id_card, phone_number, seat_number, activate_status, user_id} = req.body;
+        await bookingServices.createBooking(name, gender, email, id_card, phone_number, seat_number, activate_status, user_id);
         res.status(201).send({
             status : 'success',
-            message : 'Data user berhasil ditambahkan',
+            message : 'Data booking berhasil ditambahkan',
             data : ''
         });
     }
@@ -48,10 +47,10 @@ const createUser= async(req, res) => {
     }
 }
 
-const deleteUser = async (req, res) => {
+const deleteBooking = async (req, res) => {
     try {
         const {id} = req.params;
-        await userService.deleteUser(id);
+        await bookingrService.deleteBooking(id);
         res.status(200).send({
             status : 'success',
         });
@@ -65,14 +64,14 @@ const deleteUser = async (req, res) => {
     }
 }
 
-const updateUser = async (req, res) => {
+const updateBooking = async (req, res) => {
     try {
         const {id} = req.params;
-        const {user_name, email, password} = req.body;
-        await userService.updateUser(id, user_name, email, password);
+        const {name, gender, email, id_card, phone_number, seat_number, activate_status, user_id} = req.body;
+        await userService.updateUser(id, name, gender, email, id_card, phone_number, seat_number, activate_status, user_id);
         res.status(200).send({
             status : 'success',
-            message : 'Data user berhasil diupdate',
+            message : 'Data booking berhasil diupdate',
             data : ''
         });
     }
@@ -86,8 +85,8 @@ const updateUser = async (req, res) => {
 }
 
 module.exports = { 
-    getAllUser,
-    createUser,
-    deleteUser,
-    updateUser
+    getAllBooking,
+    createBooking,
+    deleteBooking,
+    updateBooking
 }

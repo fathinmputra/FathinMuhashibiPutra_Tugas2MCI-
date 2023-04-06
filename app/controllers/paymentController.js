@@ -1,21 +1,21 @@
-const userService = require('../services/userService');
+const paymentServices = require('../services/paymentServices');
 
-const getAllUser = async (req, res) => {
-    userService.getAllUser()
-    .then((users) => {
-        if(!users){
+const getAllPayment = async (req, res) => {
+    paymentServices.getAllPayment()
+    .then((payments) => {
+        if(!payments){
             // set content type
             res.status(404).send({
                 status : 'error',
-                message : 'Data user tidak ditemukan',
+                message : 'Data payment tidak ditemukan',
                 data : {}
         });
         }
         else {
             res.status(200).send({
                 status : 'success',
-                message : 'Data user berhasil ditemukan',
-                data : users    
+                message : 'Data payment berhasil ditemukan',
+                data : payments    
             });
         }
     })
@@ -28,14 +28,13 @@ const getAllUser = async (req, res) => {
     })
 }
 
-const createUser= async(req, res) => {
+const createPayment= async(req, res) => {
     try {
-        const {user_name, email, password} = req.body;
-        console.log (user_name, email, password);
-        await userService.createUser(user_name, email, password);
+        const {bank_name, account_name, payment_proof, booking_id} = req.body;
+        await paymentServices.createPayment(bank_name, account_name, payment_proof, booking_id);
         res.status(201).send({
             status : 'success',
-            message : 'Data user berhasil ditambahkan',
+            message : 'Data payment berhasil ditambahkan',
             data : ''
         });
     }
@@ -48,10 +47,10 @@ const createUser= async(req, res) => {
     }
 }
 
-const deleteUser = async (req, res) => {
+const deletePayment = async (req, res) => {
     try {
         const {id} = req.params;
-        await userService.deleteUser(id);
+        await paymentServices.deletePayment(id);
         res.status(200).send({
             status : 'success',
         });
@@ -65,14 +64,14 @@ const deleteUser = async (req, res) => {
     }
 }
 
-const updateUser = async (req, res) => {
+const updatePayment = async (req, res) => {
     try {
         const {id} = req.params;
-        const {user_name, email, password} = req.body;
-        await userService.updateUser(id, user_name, email, password);
+        const {bank_name, account_name, payment_proof, booking_id} = req.body;
+        await paymentServices.updatePayment(id, bank_name, account_name, payment_proof, booking_id);
         res.status(200).send({
             status : 'success',
-            message : 'Data user berhasil diupdate',
+            message : 'Data payment berhasil diupdate',
             data : ''
         });
     }
@@ -86,8 +85,8 @@ const updateUser = async (req, res) => {
 }
 
 module.exports = { 
-    getAllUser,
-    createUser,
-    deleteUser,
-    updateUser
+    getAllPayment,
+    createPayment,
+    deletePayment,
+    updatePayment
 }
