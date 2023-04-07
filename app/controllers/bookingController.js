@@ -50,7 +50,7 @@ const createBooking= async(req, res) => {
 const deleteBooking = async (req, res) => {
     try {
         const {id} = req.params;
-        await bookingrService.deleteBooking(id);
+        await bookingServices.deleteBooking(id);
         res.status(200).send({
             status : 'success',
         });
@@ -68,7 +68,7 @@ const updateBooking = async (req, res) => {
     try {
         const {id} = req.params;
         const {name, gender, email, id_card, phone_number, seat_number, activate_status, user_id} = req.body;
-        await userService.updateUser(id, name, gender, email, id_card, phone_number, seat_number, activate_status, user_id);
+        await bookingServices.updateBooking (id, name, gender, email, id_card, phone_number, seat_number, activate_status, user_id);
         res.status(200).send({
             status : 'success',
             message : 'Data booking berhasil diupdate',

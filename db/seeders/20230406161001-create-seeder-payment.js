@@ -17,7 +17,9 @@ module.exports = {
         'bank_name': "BNI",
         'account_name': "Fathin Muhashibi Putra",   
         'payment_proof' : "https://drive.google.com/file/d/1EyjHn_lBVh_jA9Zta7qm71jHlXQJzfhL/view?usp=sharing",
-        'booking_id' : 2
+        'booking_id' : 2,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
       }
     ], {});
   },

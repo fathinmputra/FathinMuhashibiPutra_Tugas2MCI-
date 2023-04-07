@@ -22,7 +22,7 @@ const deletePayment = (id) => {
 }
 
 
-const updatePayment= (bank_name, account_name, payment_proof, booking_id) => {
+const updatePayment= (id, bank_name, account_name, payment_proof, booking_id) => {
     return payment.update({ 
         bank_name, 
         account_name, 

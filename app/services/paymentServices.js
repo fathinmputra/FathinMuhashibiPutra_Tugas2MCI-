@@ -30,7 +30,7 @@ const deletePayment = async (id) => {
     }
 }
 
-const updatePayment = async (bank_name, account_name, payment_proof, booking_id) => {  
+const updatePayment = async (id, bank_name, account_name, payment_proof, booking_id) => {  
     try{
         const payment = await paymentRepository.updatePayment(id, bank_name, account_name, payment_proof, booking_id);
         return payment;

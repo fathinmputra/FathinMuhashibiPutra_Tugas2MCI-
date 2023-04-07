@@ -30,7 +30,7 @@ const deleteTicket = async (id) => {
     }
 }
 
-const updateTicket = async (seat_number, booking_id) => {  
+const updateTicket = async (id, seat_number, booking_id) => {  
     try{
         const ticket = await ticketRepository.updateTicket(id, seat_number, booking_id);
         return ticket;
@@ -39,7 +39,6 @@ const updateTicket = async (seat_number, booking_id) => {
         return err;
     }
 }
-
 
 module.exports = {  
     getAllTicket,

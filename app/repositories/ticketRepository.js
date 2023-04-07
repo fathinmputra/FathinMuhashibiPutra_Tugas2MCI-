@@ -20,7 +20,7 @@ const deleteTicket = (id) => {
 }
 
 
-const updateTicket = (seat_number, booking_id) => {
+const updateTicket = (id, seat_number, booking_id) => {
     return ticket.update({ 
         seat_number, 
         booking_id

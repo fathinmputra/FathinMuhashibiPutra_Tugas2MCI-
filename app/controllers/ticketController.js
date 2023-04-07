@@ -71,7 +71,7 @@ const updateTicket = async (req, res) => {
         await ticketServices.updateTicket(id, seat_number, booking_id);
         res.status(200).send({
             status : 'success',
-            message : 'Data ticket berhasil diupdate',
+            message : 'Data user berhasil diupdate',
             data : ''
         });
     }

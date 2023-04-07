@@ -26,7 +26,7 @@ const deleteBooking = (id) => {
 }
 
 
-const updateBooking = (name, gender, email, id_card, phone_number, seat_number, activate_status, user_id) => {
+const updateBooking = (id, name, gender, email, id_card, phone_number, seat_number, activate_status, user_id) => {
     return booking.update({
         name, 
         gender, 

@@ -30,7 +30,7 @@ const deleteBooking = async (id) => {
     }
 }
 
-const updateBooking = async (name, gender, email, id_card, phone_number, seat_number, activate_status, user_id) => {  
+const updateBooking = async (id, name, gender, email, id_card, phone_number, seat_number, activate_status, user_id) => {  
     try{
         const booking = await bookingRepository.updateBooking(id, name, gender, email, id_card, phone_number, seat_number, activate_status, user_id);
         return booking;
